@@ -1,0 +1,17 @@
+{
+  "name": "Clínica Unifranz - Sistema de Gestión Clínica",
+  "short_name": "Clínica Unifranz",
+  "description": "Sistema de Gestión Clínica Odontológica Integral Unifranz",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
