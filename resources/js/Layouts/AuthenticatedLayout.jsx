@@ -109,12 +109,12 @@ export default function AuthenticatedLayout({ header, children }) {
             });
         }
 
-        // 5. Módulos específicos de supervisión docente
-        if (['docente', 'admin', 'director_clinica'].includes(roleSlug)) {
+        // 5. Módulo 6: Formación y Supervisión Clínica
+        if (['admin', 'director_clinica', 'docente', 'estudiante'].includes(roleSlug)) {
             items.push({
-                name: 'Supervisión Clínica',
-                href: route('docente.dashboard'),
-                active: route().current('docente.dashboard'),
+                name: 'Formación & Supervisión',
+                href: route('supervision.index'),
+                active: route().current('supervision.*'),
                 icon: (
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />

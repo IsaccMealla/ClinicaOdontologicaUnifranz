@@ -8,6 +8,7 @@ use App\Http\Controllers\ImagenClinicaController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PlanTratamientoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupervisionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -110,7 +111,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/imagenes/{id}/anotaciones', [ImagenClinicaController::class, 'guardarAnotaciones'])->name('imagenes.anotaciones');
         Route::post('/imagenes/{id}/validar-docente', [ImagenClinicaController::class, 'validarDocente'])->name('imagenes.validar-docente');
         Route::delete('/imagenes/{id}', [ImagenClinicaController::class, 'destroy'])->name('imagenes.destroy');
+
+        // --- MÓDULO 6: FORMACIÓN Y SUPERVISIÓN CLÍNICA ---
+        Route::get('/supervision', [SupervisionController::class, 'index'])->name('supervision.index');
+        Route::post('/supervision/solicitudes', [SupervisionController::class, 'storeSolicitud'])->name('supervision.solicitudes.store');
+        Route::post('/supervision/solicitudes/{id}/responder', [SupervisionController::class, 'responderSolicitud'])->name('supervision.solicitudes.responder');
+        Route::post('/supervision/alertas-desempeno', [SupervisionController::class, 'lanzarAlertaDesempeno'])->name('supervision.alertas.store');
+        Route::post('/supervision/alertas-desempeno/{id}/resolver', [SupervisionController::class, 'resolverAlertaDesempeno'])->name('supervision.alertas.resolver');
+        Route::post('/supervision/cupos-requisito', [SupervisionController::class, 'guardarRequisitoCupo'])->name('supervision.cupos.store');
+        Route::post('/supervision/programacion-docente', [SupervisionController::class, 'guardarProgramacionDocente'])->name('supervision.programacion.store');
     });
+
 
 
     // --- MÓDULO DE ASIGNACIÓN CLÍNICA (ESTUDIANTES <-> PACIENTES) ---
