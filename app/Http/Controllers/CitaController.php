@@ -179,11 +179,11 @@ class CitaController extends Controller
         // Listas auxiliares para el formulario de agendamiento
         $estudiantes = User::whereHas('rol', function ($q) {
             $q->where('slug', 'estudiante');
-        })->where('activo', true)->orderBy('name')->get(['id', 'name', 'email']);
+        })->where('is_active', true)->orderBy('name')->get(['id', 'name', 'email']);
 
         $docentes = User::whereHas('rol', function ($q) {
             $q->whereIn('slug', ['docente', 'director_clinica']);
-        })->where('activo', true)->orderBy('name')->get(['id', 'name', 'email']);
+        })->where('is_active', true)->orderBy('name')->get(['id', 'name', 'email']);
 
         $pacientesList = Paciente::where('activo', true)
             ->whereNotIn('estado_paciente', ['alta_abandono'])
