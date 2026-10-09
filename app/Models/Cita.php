@@ -18,12 +18,25 @@ class Cita extends Model
         'estudiante_id',
         'docente_id',
         'sillon_id',
+        'plan_tratamiento_id',
+        'tratamiento_fase_id',
         'fecha_hora_inicio',
         'fecha_hora_fin',
         'duracion_estimada_minutos',
+        'es_recurrente',
+        'frecuencia_recurrencia',
+        'grupo_recurrencia_id',
         'motivo',
         'estado',
         'check_in_at',
+        'inicio_atencion_at',
+        'fin_atencion_at',
+        'minutos_espera_reales',
+        'alerta_espera_prolongada',
+        'recordatorio_enviado',
+        'recordatorio_enviado_at',
+        'recordatorio_canal',
+        'recordatorio_mensaje',
         'cancelada_en',
         'cancelada_por_id',
         'motivo_cancelacion',
@@ -36,8 +49,15 @@ class Cita extends Model
             'fecha_hora_inicio' => 'datetime',
             'fecha_hora_fin' => 'datetime',
             'check_in_at' => 'datetime',
+            'inicio_atencion_at' => 'datetime',
+            'fin_atencion_at' => 'datetime',
+            'recordatorio_enviado_at' => 'datetime',
             'cancelada_en' => 'datetime',
             'duracion_estimada_minutos' => 'integer',
+            'minutos_espera_reales' => 'integer',
+            'es_recurrente' => 'boolean',
+            'alerta_espera_prolongada' => 'boolean',
+            'recordatorio_enviado' => 'boolean',
         ];
     }
 
@@ -59,6 +79,16 @@ class Cita extends Model
     public function sillon(): BelongsTo
     {
         return $this->belongsTo(Sillon::class, 'sillon_id');
+    }
+
+    public function planTratamiento(): BelongsTo
+    {
+        return $this->belongsTo(PlanTratamiento::class, 'plan_tratamiento_id');
+    }
+
+    public function tratamientoFase(): BelongsTo
+    {
+        return $this->belongsTo(TratamientoFase::class, 'tratamiento_fase_id');
     }
 
     public function canceladaPor(): BelongsTo

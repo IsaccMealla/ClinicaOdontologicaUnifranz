@@ -95,4 +95,10 @@ class HistoriaClinica extends Model
     {
         return $this->hasMany(PlanTratamiento::class, 'historia_clinica_id');
     }
+
+    public function actasAbandono(): HasMany
+    {
+        return $this->hasMany(ActaAbandono::class, 'historia_clinica_id');
+    }
 }
+

@@ -206,4 +206,10 @@ class Paciente extends Model
     {
         return $this->hasMany(TransferenciaPaciente::class, 'paciente_id');
     }
+
+    public function actasAbandono(): HasMany
+    {
+        return $this->hasMany(ActaAbandono::class, 'paciente_id');
+    }
 }
+

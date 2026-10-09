@@ -62,9 +62,17 @@ export default function AdmisionDashboard({ sillones, citasHoy, pacientes }) {
                             <h3 className="font-bold text-slate-800 text-base">Citas Programadas para Hoy</h3>
                             <p className="text-xs text-slate-500">Control de check-in y llegada de pacientes a sala de espera</p>
                         </div>
-                        <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">
-                            {citasHoy.length} citas hoy
-                        </span>
+                        <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">
+                                {citasHoy.length} citas hoy
+                            </span>
+                            <Link
+                                href={route('citas.index')}
+                                className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition"
+                            >
+                                Módulo 4 Completo &rarr;
+                            </Link>
+                        </div>
                     </div>
 
                     {citasHoy.length === 0 ? (
@@ -104,9 +112,19 @@ export default function AdmisionDashboard({ sillones, citasHoy, pacientes }) {
                                                 </span>
                                             </td>
                                             <td className="py-2.5 px-3 text-right">
-                                                <button className="px-2.5 py-1 rounded bg-cyan-600 text-white text-[11px] font-medium hover:bg-cyan-700 transition">
-                                                    Check-In
-                                                </button>
+                                                {c.estado === 'programada' ? (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => router.post(route('citas.check-in', c.id))}
+                                                        className="px-2.5 py-1 rounded bg-amber-500 text-white text-[11px] font-medium hover:bg-amber-600 transition"
+                                                    >
+                                                        Check-In
+                                                    </button>
+                                                ) : (
+                                                    <span className="text-[11px] text-slate-400 font-medium capitalize">
+                                                        {c.estado}
+                                                    </span>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}
@@ -114,6 +132,7 @@ export default function AdmisionDashboard({ sillones, citasHoy, pacientes }) {
                             </table>
                         </div>
                     )}
+
                 </div>
 
                 {/* Últimos Pacientes Registrados */}

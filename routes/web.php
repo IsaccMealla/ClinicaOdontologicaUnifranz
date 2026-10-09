@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AsignacionController;
+use App\Http\Controllers\CitaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoriaClinicaController;
 use App\Http\Controllers\PacienteController;
@@ -89,6 +90,18 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/remisiones/{id}/resolver', [PlanTratamientoController::class, 'resolverRemision'])->name('remisiones.resolver');
         Route::post('/pacientes/{id}/transferir-estudiante-formal', [PlanTratamientoController::class, 'transferirPaciente'])->name('pacientes.transferir-formal');
         Route::get('/tratamientos/reportes-produccion', [PlanTratamientoController::class, 'reportesProduccion'])->name('tratamientos.reportes-produccion');
+
+        // --- MÓDULO 4: AGENDAMIENTO DE CITAS, SALA DE ESPERA Y PROTOCOLO DE ABANDONO ---
+        Route::get('/citas', [CitaController::class, 'index'])->name('citas.index');
+        Route::post('/citas', [CitaController::class, 'store'])->name('citas.store');
+        Route::post('/citas/{id}/check-in', [CitaController::class, 'checkIn'])->name('citas.check-in');
+        Route::post('/citas/{id}/iniciar-atencion', [CitaController::class, 'iniciarAtencion'])->name('citas.iniciar-atencion');
+        Route::post('/citas/{id}/completar', [CitaController::class, 'completar'])->name('citas.completar');
+        Route::post('/citas/{id}/no-asistio', [CitaController::class, 'marcarNoAsistio'])->name('citas.no-asistio');
+        Route::post('/citas/{id}/cancelar', [CitaController::class, 'cancelar'])->name('citas.cancelar');
+        Route::post('/citas/{id}/recordatorio', [CitaController::class, 'enviarRecordatorio'])->name('citas.recordatorio');
+        Route::post('/citas/alta-abandono', [CitaController::class, 'darAltaAbandono'])->name('citas.alta-abandono');
+        Route::post('/citas/configuracion', [CitaController::class, 'guardarConfiguracion'])->name('citas.configuracion');
     });
 
     // --- MÓDULO DE ASIGNACIÓN CLÍNICA (ESTUDIANTES <-> PACIENTES) ---

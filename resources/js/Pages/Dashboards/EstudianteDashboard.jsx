@@ -109,8 +109,18 @@ export default function EstudianteDashboard({ activeShift, proximasCitas, seguim
 
                 {/* Próximas Citas Programadas */}
                 <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs">
-                    <h3 className="font-bold text-slate-800 text-base mb-1">Mi Agenda de Turnos</h3>
-                    <p className="text-xs text-slate-500 mb-4">Próximas atenciones clínicas en sillón</p>
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 className="font-bold text-slate-800 text-base mb-0.5">Mi Agenda de Turnos</h3>
+                            <p className="text-xs text-slate-500">Próximas atenciones clínicas en sillón</p>
+                        </div>
+                        <Link
+                            href={route('citas.index')}
+                            className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition"
+                        >
+                            Ver Agenda Completa &rarr;
+                        </Link>
+                    </div>
 
                     {proximasCitas.length === 0 ? (
                         <div className="text-center py-6 text-slate-400 text-sm">No tienes citas programadas próximamente.</div>

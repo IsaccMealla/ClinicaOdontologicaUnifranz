@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function DocenteDashboard({ historiasPendientes, odontogramasPendientes, fasesPendientes }) {
     return (
@@ -41,8 +41,15 @@ export default function DocenteDashboard({ historiasPendientes, odontogramasPend
                             <span className="block text-xl font-bold text-slate-900">{fasesPendientes.length}</span>
                             <span className="text-[10px] font-bold text-slate-500 uppercase">Fases</span>
                         </div>
+                        <Link
+                            href={route('citas.index')}
+                            className="px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-sm"
+                        >
+                            Agenda & Citas &rarr;
+                        </Link>
                     </div>
                 </div>
+
 
                 {/* Historias Clínicas Pendientes */}
                 <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs">
