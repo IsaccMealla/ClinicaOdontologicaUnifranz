@@ -4,6 +4,7 @@ use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoriaClinicaController;
+use App\Http\Controllers\ImagenClinicaController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PlanTratamientoController;
 use App\Http\Controllers\ProfileController;
@@ -102,7 +103,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/citas/{id}/recordatorio', [CitaController::class, 'enviarRecordatorio'])->name('citas.recordatorio');
         Route::post('/citas/alta-abandono', [CitaController::class, 'darAltaAbandono'])->name('citas.alta-abandono');
         Route::post('/citas/configuracion', [CitaController::class, 'guardarConfiguracion'])->name('citas.configuracion');
+
+        // --- MÓDULO 5: GESTIÓN DE IMÁGENES Y RADIOGRAFÍAS ---
+        Route::get('/imagenes', [ImagenClinicaController::class, 'index'])->name('imagenes.index');
+        Route::post('/imagenes', [ImagenClinicaController::class, 'store'])->name('imagenes.store');
+        Route::post('/imagenes/{id}/anotaciones', [ImagenClinicaController::class, 'guardarAnotaciones'])->name('imagenes.anotaciones');
+        Route::post('/imagenes/{id}/validar-docente', [ImagenClinicaController::class, 'validarDocente'])->name('imagenes.validar-docente');
+        Route::delete('/imagenes/{id}', [ImagenClinicaController::class, 'destroy'])->name('imagenes.destroy');
     });
+
 
     // --- MÓDULO DE ASIGNACIÓN CLÍNICA (ESTUDIANTES <-> PACIENTES) ---
     Route::middleware('role:admin,director_clinica,docente,admision')->group(function () {

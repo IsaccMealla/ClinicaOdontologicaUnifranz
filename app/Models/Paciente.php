@@ -211,5 +211,11 @@ class Paciente extends Model
     {
         return $this->hasMany(ActaAbandono::class, 'paciente_id');
     }
+
+    public function imagenesClinicas(): HasMany
+    {
+        return $this->hasMany(ImagenClinica::class, 'paciente_id');
+    }
 }
+
 
